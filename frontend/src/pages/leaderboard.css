@@ -1,0 +1,198 @@
+/* ===================== WRAP ===================== */
+.lb-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* ===================== PODIUM ===================== */
+.pod {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  gap: 20px;
+  align-items: end;
+  justify-items: center;
+  margin: 30px 0 18px;
+  position: relative;
+}
+
+/* mỗi cột podium */
+.pod__col {
+  display: grid;
+  justify-items: center;
+  align-items: end;
+  gap: 6px;
+  position: relative;
+  transform: translateY(0);
+}
+
+/* Top cao thấp nhẹ */
+.pod__col--1 { transform: translateY(-10px); }
+.pod__col--3 { transform: translateY(4px); }
+
+/* =================== CARD =================== */
+.pod__card {
+  width: 210px;
+  border-radius: 18px;
+  padding: 14px 10px;
+  text-align: center;
+  color: #111;
+  background: linear-gradient(145deg, #ffffff, #f6f7fa);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.pod__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* ribbon (Hạng 1/2/3) */
+.pod__ribbon {
+  position: absolute;
+  top: 8px;
+  left: -6px;
+  font-weight: 700;
+  font-size: 11px;
+  color: #fff;
+  padding: 5px 12px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  z-index: 2;
+}
+.pod__ribbon.gold { background: linear-gradient(90deg, #ffda6a, #f7c13e); }
+.pod__ribbon.silver { background: linear-gradient(90deg, #cfd4db, #9da3ab); }
+.pod__ribbon.bronze { background: linear-gradient(90deg, #e09d54, #b67427); }
+
+/* tên + điểm */
+.pod__name {
+  position: relative;
+  z-index: 1;
+  font-weight: 800;
+  font-size: 16px;
+  color: #0f172a;
+  margin-top: 6px;
+  margin-bottom: 2px;
+}
+.pod__score {
+  font-size: 13px;
+  color: #475569;
+  margin-bottom: 6px;
+}
+
+/* =================== AVATAR =================== */
+.avc {
+  width: 66px;
+  height: 66px;
+  margin: 10px auto 6px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 40% 30%, #fff, #f0f4ff 90%);
+  color: #111;
+  font-weight: 900;
+  font-size: 20px;
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.6),
+    0 0 12px rgba(255, 200, 50, 0.35),
+    inset 0 0 4px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* halo xoay mượt, không gạch vàng */
+.avc::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  padding: 2px;
+  background: conic-gradient(
+    from 0deg,
+    #ffd700,
+    #ffa200,
+    #ff6b6b,
+    #7fd1ff,
+    #ffd700
+  );
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: spin 6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* =================== TOP LABEL =================== */
+.top-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #333;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #ffedb5, #ffe26f);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  display: inline-block;
+  margin-bottom: 4px;
+}
+.top-label--1 {
+  background: linear-gradient(90deg, #ffde7d, #f9c23c);
+  color: #111;
+}
+.top-label--2 {
+  background: linear-gradient(90deg, #e3e5eb, #bfc4cc);
+  color: #222;
+}
+.top-label--3 {
+  background: linear-gradient(90deg, #f3c087, #c9863d);
+  color: #fff;
+}
+
+/* =================== BỆ PODIUM =================== */
+.pod__base {
+  width: 100%;
+  border-radius: 10px;
+  text-align: center;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+.pod__base--1 { height: 52px; background: linear-gradient(180deg, #ffdb70, #b78600); }
+.pod__base--2 { height: 42px; background: linear-gradient(180deg, #d1d7df, #8e98a4); }
+.pod__base--3 { height: 36px; background: linear-gradient(180deg, #d59652, #8a521b); }
+
+.pod__crown {
+  font-size: 24px;
+  color: #ffd700;
+  filter: drop-shadow(0 4px 12px rgba(255, 215, 0, 0.7));
+  margin-bottom: -2px;
+  animation: glow 2.8s ease-in-out infinite;
+}
+@keyframes glow {
+  0%, 100% { transform: translateY(0); opacity: 0.95; }
+  50% { transform: translateY(-3px); opacity: 1; }
+}
+
+/* =================== TABLE DƯỚI =================== */
+.lb-card { border-radius: 12px; }
+.lb-card .ant-table { border-radius: 12px; overflow: hidden; }
+.lb-card .ant-table-thead > tr > th {
+  background: linear-gradient(180deg, #f7fafc, #eef2f7);
+  font-weight: 700;
+}
+.lb-card .ant-table-tbody > tr:hover > td { background: #fafcff; }
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 900px) {
+  .pod { grid-template-columns: 1fr; gap: 14px; }
+  .pod__col--1, .pod__col--3 { transform: none; }
+  .pod__card { width: 80%; }
+}

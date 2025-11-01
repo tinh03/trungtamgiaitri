@@ -1,0 +1,64 @@
+/* ===== NỀN NGOÀI (mềm, tươi) ===== */
+.areas-wrap{
+  background:
+    radial-gradient(1200px 600px at -10% -10%, rgba(255,192,203,.35), transparent 60%),
+    radial-gradient(1200px 600px at 110% -15%, rgba(255,165,180,.35), transparent 60%),
+    linear-gradient(180deg,#fff5f8,#f7f9ff 40%, #ffffff);
+}
+
+/* lớp hạt li ti rất nhẹ (không rối) */
+.areas-wrap::after{
+  content:"";
+  display:block;
+  height: 1px;
+  opacity:.08;
+  background:
+    radial-gradient(#000 1px, transparent 1px) 0 0 / 18px 18px,
+    radial-gradient(#000 1px, transparent 1px) 9px 9px / 18px 18px;
+}
+
+/* ===== CARD TRÒ CHƠI: viền gradient cao cấp ===== */
+.game-card{
+  position: relative;
+  border: none !important;
+  border-radius: 18px;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    conic-gradient(from 130deg, #ffb3c1, #ffc3a0, #a1c4fd, #c2e9fb, #ffb3c1) border-box;
+  border: 1.6px solid transparent;
+  box-shadow: 0 10px 24px rgba(0,0,0,.06);
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  overflow: hidden;
+}
+.game-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0,0,0,.12);
+  filter: saturate(1.04);
+}
+
+/* tiêu đề & sub */
+.game-title{
+  font-weight: 800;
+  font-size: 18px;
+  color: #0f172a;
+}
+.game-sub{
+  color: #64748b;
+  font-size: 13px;
+}
+
+/* ảnh cover scale nhẹ khi hover */
+.game-card .game-cover{
+  transition: transform .45s ease !important;
+}
+.game-card:hover .game-cover{
+  transform: scale(1.05) !important;
+}
+
+/* tinh chỉnh antd head (trường hợp có) */
+.game-card .ant-card-head{
+  border: none;
+}
+.game-card .ant-card-body{
+  background: linear-gradient(180deg,#ffffff,#fff9fb);
+}
