@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card, Button, message, Tag, Space, Typography } from "antd";
-import { apiGetMyTickets, apiCancelTicket, apiMarkPaidTicket } from "../lib/api";
+import { apiGetMyTickets, apiCancelTicket, apiMarkPaidTicket, apiFetch } from "../lib/api";
 import PayQRModal from "../components/PayQRModal";
 import dayjs from "dayjs";
 
@@ -41,6 +41,17 @@ export default function MyTicketsPage() {
       load();
     } catch (e) {
       message.error(e.message || "Không thể báo thanh toán");
+    }
+  };
+
+  // ===== Thanh toán MoMo =====
+  const payMomo = async (row) => {
+    try {
+      const res = await apiFetch(`/ve/pay-init/${row.id}`, { method: "POST" });
+      if (!res?.payUrl) throw new Error("Không nhận được payUrl");
+      window.location.href = res.payUrl;
+    } catch (e) {
+      message.error(e.message || "Không thể khởi tạo thanh toán Momo");
     }
   };
 
@@ -106,7 +117,7 @@ export default function MyTicketsPage() {
 
               <div style={{ marginTop: 8 }}>
                 {timeStr && <div>Thời gian: {timeStr}</div>}
-                <div>Ngày đặt: <Text strong>{createdAt}</Text></div> {/* ✅ hiển thị ngày đặt */}
+                <div>Ngày đặt: <Text strong>{createdAt}</Text></div>
                 <div>Số lượng: {r.so_luong}</div>
                 <div>Giá vé: {new Intl.NumberFormat("vi-VN").format(price || 0)} đ</div>
                 <div style={{ fontWeight: 600, marginTop: 4 }}>
@@ -117,11 +128,16 @@ export default function MyTicketsPage() {
                 </div>
               </div>
 
-              <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
+              <div style={{ marginTop: 12, display: "flex", gap: 8, flexWrap: "wrap" }}>
                 {r.trang_thai === "BOOKED" && (
-                  <Button type="primary" onClick={() => openPay(r)}>
-                    Thanh toán
-                  </Button>
+                  <>
+                    <Button type="primary" onClick={() => payMomo(r)}>
+                      Thanh toán MoMo
+                    </Button>
+                    <Button onClick={() => openPay(r)}>
+                      QR thủ công
+                    </Button>
+                  </>
                 )}
                 {(r.trang_thai === "BOOKED" || r.trang_thai === "PENDING") && (
                   <Button danger onClick={() => cancel(r)}>
