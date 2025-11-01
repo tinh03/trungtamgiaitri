@@ -1,0 +1,30 @@
+# ===== PYTHON =====
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+env/
+.venv.bak/
+.pytest_cache/
+db.sqlite3
+
+# ===== ENV FILES =====
+.env
+*.env
+
+# ===== FRONTEND =====
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.env
+
+# ===== SYSTEM / EDITOR =====
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ===== LOGS =====
+*.log
+logs/
